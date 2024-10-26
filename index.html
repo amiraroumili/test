@@ -27,9 +27,14 @@
                 return;
             }
 
-            const response = await fetch(`/api/${operation}/${num1}/${num2}`);
-            const data = await response.json();
-            document.getElementById("result").innerText = data.error || `Result: ${data.result}`;
+            try {
+                const response = await fetch(`/api/${operation}/${num1}/${num2}`);
+                const data = await response.json();
+                document.getElementById("result").innerText = data.error || `Result: ${data.result}`;
+            } catch (error) {
+                document.getElementById("result").innerText = "An error occurred. Please try again.";
+                console.error("Error:", error);
+            }
         }
     </script>
 </body>
